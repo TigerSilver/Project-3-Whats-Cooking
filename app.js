@@ -7,13 +7,16 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const serveFavicon = require("serve-favicon");
 
+const passport = require("passport");
+require("./configs/passport");
+
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require("mongoose");
 
 const deserializeUserMiddleware = require("./middleware/deserialize-user");
 
-//const authRouter = require("./routes/auth");
+const authRouter = require("./routes/auth");
 
 const app = express();
 
@@ -38,7 +41,10 @@ app.use(
 
 app.use(deserializeUserMiddleware);
 
-//app.use("/auth", authRouter);
+app.use("/auth", authRouter);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("*", (req, res, next) => {
   res.sendFile(join(__dirname, "./client/build/index.html"));
