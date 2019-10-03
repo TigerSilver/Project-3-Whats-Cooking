@@ -1,7 +1,5 @@
 "use strict";
-const {
-  Router
-} = require("express");
+const { Router } = require("express");
 const router = Router();
 
 const passport = require("passport");
@@ -46,63 +44,62 @@ router.post("/signup", (req, res, next) => {
     });
   }
 
-  User.findOne({
-    email
-  }, (err, foundUser) => {
-    if (err) {
-      res.status(500).json({
-        message: "Email check went bad."
-      });
-      return;
-    }
-    if (foundUser) {
-      res.status(400).json({
-        message: "Username taken.Choose another one."
-      });
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(10);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const aNewUser = new User({
-      email: email,
-      password: hashPass,
-      firstName,
-      lastName,
-      username,
-      profilePicture
-    });
-
-    aNewUser.save(err => {
+  User.findOne(
+    {
+      email
+    },
+    (err, foundUser) => {
       if (err) {
-        res
-          .status(400)
-          .json({
-            message: "Saving user to database went wrong."
-          });
-        console.log(email, username, firstName, lastName, password);
+        res.status(500).json({
+          message: "Email check went bad."
+        });
+        return;
+      }
+      if (foundUser) {
+        res.status(400).json({
+          message: "Email taken.Choose another one."
+        });
         return;
       }
 
-      //in the next step the user will loggin automatically after the sign up.
-      // .login() is a method predefined by passport
-      req.login(aNewUser, error => {
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
+
+      const aNewUser = new User({
+        email: email,
+        password: hashPass,
+        firstName,
+        lastName,
+        username,
+        profilePicture
+      });
+
+      aNewUser.save(err => {
         if (err) {
-          res.status(500).json({
-            message: "Login after signup went bad"
+          res.status(400).json({
+            message: "Saving user to database went wrong."
           });
+          console.log(email, username, firstName, lastName, password);
           return;
         }
-        //the next step will send the user information to the front end
-        res.status(200).json(aNewUser);
+
+        //in the next step the user will loggin automatically after the sign up.
+        // .login() is a method predefined by passport
+        req.login(aNewUser, err => {
+          if (err) {
+            res.status(500).json({
+              message: "Login after signup went bad"
+            });
+            return;
+          }
+          //the next step will send the user information to the front end
+          res.status(200).json(aNewUser);
+        });
       });
-    });
-  });
+    }
+  );
 });
 
-router.post("/login", (req, res, next) => {
-
-});
+router.post("/login", (req, res, next) => {});
 
 module.exports = router;

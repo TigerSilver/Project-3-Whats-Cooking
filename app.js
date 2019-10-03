@@ -8,6 +8,7 @@ const logger = require("morgan");
 const serveFavicon = require("serve-favicon");
 
 const expressSession = require("express-session");
+const passport = require("passport");
 const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require("mongoose");
 
@@ -16,6 +17,8 @@ const deserializeUserMiddleware = require("./middleware/deserialize-user");
 const authRouter = require("./routes/auth");
 
 const app = express();
+
+require("./configs/passport");
 
 app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(express.static(join(__dirname, "client/build")));
@@ -35,6 +38,9 @@ app.use(
     })
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(deserializeUserMiddleware);
 
