@@ -1,0 +1,3 @@
+{
+  "extends": "@ironh/eslint-config/node"
+}
