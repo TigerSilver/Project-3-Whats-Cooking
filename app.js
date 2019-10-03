@@ -20,6 +20,13 @@ const app = express();
 
 require("./configs/passport");
 
+// ROUTES MIDDLEWARE BELOW:
+
+const authRoute = require("./routes/auth");
+app.use("/auth", authRoute);
+
+//
+
 app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(express.static(join(__dirname, "client/build")));
 app.use(logger("dev"));

@@ -5,7 +5,7 @@ const router = Router();
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-//here we require our user model, this is to grab the schema
+// Here we require our user model, in order to grab the schema
 const User = require("./../models/user");
 
 router.post("/signup", (req, res, next) => {
@@ -17,21 +17,7 @@ router.post("/signup", (req, res, next) => {
     password,
     profilePicture
   } = req.body;
-  //this works in postman but continuins with the code in the learning unit
-  // User.create({
-  // firstName,
-  // lastName,
-  // username,
-  // email,
-  // password,
-  // profilePicture
-  // })
-  // .then(user => {
-  // res.json({ user });
-  // })
-  // .catch(error => {
-  // next(error);
-  // });
+
   if (!email || !password) {
     res.status(400).json({
       message: "Provide username and password"
