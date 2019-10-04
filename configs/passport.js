@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcryptjs"); // !!!
+const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 passport.serializeUser((loggedInUser, cb) => {
@@ -18,24 +18,28 @@ passport.deserializeUser((userIdFromSession, cb) => {
 });
 
 passport.use(
-  new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, foundUser) => {
-      if (err) {
-        next(err);
-        return;
-      }
+  new LocalStrategy(
+    //for passport is necessary change  the fields to the data that i going to use.
+    { usernameField: "email", passwordField: "password" },
+    (email, password, next) => {
+      User.findOne({ email }, (error, foundUser) => {
+        if (error) {
+          next(error);
+          return;
+        }
 
-      if (!foundUser) {
-        next(null, false, { message: "Incorrect username." });
-        return;
-      }
+        if (!foundUser) {
+          next(null, false, { message: "Incorrect email." });
+          return;
+        }
 
-      if (!bcrypt.compareSync(password, foundUser.password)) {
-        next(null, false, { message: "Incorrect password." });
-        return;
-      }
+        if (!bcrypt.compareSync(password, foundUser.password)) {
+          next(null, false, { message: "Incorrect password." });
+          return;
+        }
 
-      next(null, foundUser);
-    });
-  })
+        next(null, foundUser);
+      });
+    }
+  )
 );

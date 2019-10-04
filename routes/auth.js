@@ -24,7 +24,7 @@ router.post("/signup", (req, res, next) => {
     });
     return;
   }
-  if (password.length < 10) {
+  if (password.length < 7) {
     res.status(400).json({
       message: "Please make your password at least 10 digits long for security"
     });
@@ -86,6 +86,42 @@ router.post("/signup", (req, res, next) => {
   );
 });
 
-router.post("/login", (req, res, next) => {});
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (error, logged, failure) => {
+    if (error) {
+      res.status(500).json({ message: "The authentication went wrong" });
+      return;
+    }
+    if (!logged) {
+      res.status(401).json(failure);
+      return;
+    }
+
+    //here we maintain the user in the session, is saved
+    req.login(logged, error => {
+      if (error) {
+        res
+          .status(500)
+          .json({ message: "It went wrong maintain the session." });
+        return;
+      }
+      res.status(200).json(logged);
+    });
+  })(req, res, next); // ask ze what is happening here
+});
+
+router.post("/logout", (req, res, next) => {
+  req.logout(); // already defined by passport not necessary in this req.session.destroy
+  res.status(200).json({ message: "Log out succesful" });
+});
+
+router.get("/loggedin", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    //is already defined by passport
+    res.status(200).json(req.user);
+    return;
+  }
+  res.status(403).json({ message: "Unauthorized" });
+});
 
 module.exports = router;

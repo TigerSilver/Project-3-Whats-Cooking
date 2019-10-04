@@ -9,23 +9,15 @@ const serveFavicon = require("serve-favicon");
 
 const expressSession = require("express-session");
 const passport = require("passport");
+const authRoute = require("./routes/auth");
 const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require("mongoose");
 
 const deserializeUserMiddleware = require("./middleware/deserialize-user");
 
-const authRouter = require("./routes/auth");
-
 const app = express();
 
 require("./configs/passport");
-
-// ROUTES MIDDLEWARE BELOW:
-
-const authRoute = require("./routes/auth");
-app.use("/auth", authRoute);
-
-//
 
 app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(express.static(join(__dirname, "client/build")));
@@ -38,7 +30,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 60 * 60 * 24 * 1000 },
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: false, // wasfalse before
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
       ttl: 24 * 60 * 60
@@ -46,12 +38,13 @@ app.use(
   })
 );
 
+app.use(deserializeUserMiddleware);
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(deserializeUserMiddleware);
-
-app.use("/auth", authRouter);
+//authRoute have to be here so is able to grab all the configuration from the upper lines to work
+app.use("/auth", authRoute);
 
 app.get("*", (req, res, next) => {
   res.sendFile(join(__dirname, "./client/build/index.html"));
