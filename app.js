@@ -15,6 +15,9 @@ const mongoose = require("mongoose");
 
 const deserializeUserMiddleware = require("./middleware/deserialize-user");
 
+//Routers
+const recipeRoute = require("./routes/recipe");
+
 const app = express();
 
 require("./configs/passport");
@@ -45,6 +48,9 @@ app.use(passport.session());
 
 //authRoute have to be here so is able to grab all the configuration from the upper lines to work
 app.use("/auth", authRoute);
+
+//app will go to the routes
+app.use("/", recipeRoute);
 
 app.get("*", (req, res, next) => {
   res.sendFile(join(__dirname, "./client/build/index.html"));

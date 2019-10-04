@@ -1,10 +1,17 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const recipeSchema = new mongoose.Schema({
+const recipeSchema = new Schema({
   name: {
     type: String,
+    required: true
+  },
+  _addedBy: {
+    //this way is possible to grab the info of the user who publish the recipe
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true
   },
   ingredients: {
@@ -16,12 +23,12 @@ const recipeSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   meal: {
     type: String,
-    enum: ["Breakfast", "Lunch", "Dinner"]
+    enum: ["Breakfast", "Lunch", "Dinner", "Beverage", "Dessert"]
   },
   typeOfFood: {
     type: String,
@@ -30,10 +37,6 @@ const recipeSchema = new mongoose.Schema({
   specifications: {
     type: String,
     enum: ["Gluten-free", "Sugar-free", "Salt-free", "Cooked", "Cold"]
-  },
-  others: {
-    type: String,
-    enum: ["Beverage", "Dessert"]
   }
 });
 
