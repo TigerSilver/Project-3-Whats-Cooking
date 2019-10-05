@@ -46,13 +46,33 @@ router.post("/addRecipe", (req, res, next) => {
     });
 });
 
-router.get("/edit/:id", (req, res, next) => {
+router.patch("/edit/:id", (req, res, next) => {
   Recipe.findOne({ _id: req.params.id })
     .then(recipe => {
       res.json({ success: true, recipe });
     })
     .catch(err => {
-      console.log("The editing went wrong");
+      console.log("The editing went wrong", err);
+    });
+});
+
+router.get("/recipeDetail/:id", (req, res, next) => {
+  Recipe.findById({ _id: req.params.id })
+    .then(recipe => {
+      res.json({ success: true, recipe });
+    })
+    .catch(err => {
+      console.log("Charge details went wrong", err);
+    });
+});
+
+router.delete("/delete/:id", (req, res, next) => {
+  Recipe.remove({ _id: req.params.id })
+    .then(result => {
+      res.json({ success: true, result });
+    })
+    .catch(err => {
+      console.log("It wasn't possible to eliminate the recipe.", err);
     });
 });
 
