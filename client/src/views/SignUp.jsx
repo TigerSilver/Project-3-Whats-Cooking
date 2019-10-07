@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import * as AuthenticationServices from "./../services/auth-service";
+
 export default class SignUpView extends Component {
   constructor(props) {
     super(props);
@@ -13,11 +15,12 @@ export default class SignUpView extends Component {
       lastName: "",
       username: ""
     };
+    //the methos needs to be bind for being able to work
     this.onValueChange = this.onValueChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onValueChange(event) {
-    console.dir(event.target);
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
@@ -26,12 +29,31 @@ export default class SignUpView extends Component {
     });
   }
 
+  onFormSubmit(event) {
+    event.preventDefault();
+    const { email, password, firstName, lastName, username } = this.state;
+    AuthenticationServices.signUpService({
+      email,
+      password,
+      firstName,
+      lastName,
+      username
+    })
+      .then(user => {
+        this.props.history.push("/home");
+        console.log(user);
+      })
+      .catch(error => {
+        console.log("ERROR", error);
+      });
+  }
+
   render() {
     return (
       <div>
         <h1>Sign Up</h1>
         {/* onSubmit={this.onFormSubmit}  this goes in the next line*/}
-        <Form>
+        <Form onSubmit={this.onFormSubmit}>
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -48,7 +70,7 @@ export default class SignUpView extends Component {
               placeholder="Password"
               name="password"
               type="password"
-              value={this.password}
+              value={this.state.password}
               onChange={this.onValueChange}
             />
           </Form.Group>

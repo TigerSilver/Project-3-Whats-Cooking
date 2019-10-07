@@ -41,10 +41,11 @@ export const signUpService = ({
     authAPI
       .post("/signup", { email, password, firstName, lastName, username })
       .then(response => {
-        const user = response.data.user;
+        const user = response.data;
         resolve(user);
       })
       .catch(error => {
+        console.log("SERVICE ERROR", error);
         reject(error);
       });
   });
