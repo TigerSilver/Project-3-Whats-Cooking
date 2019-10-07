@@ -29,7 +29,20 @@ const userSchema = new mongoose.Schema({
   },
   profilePicture: {
     type: String
-  }
+  },
+  favorites: [
+    {
+      //in this way we are telling that will bring the id of recipes
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe"
+    }
+  ],
+  cookLater: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);

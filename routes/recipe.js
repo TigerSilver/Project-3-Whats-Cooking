@@ -47,7 +47,21 @@ router.post("/addRecipe", (req, res, next) => {
 });
 
 router.patch("/edit/:id", (req, res, next) => {
-  Recipe.findOne({ _id: req.params.id })
+  const { name, ingredients, preparation } = req.body;
+  const query = {
+    _id: req.params.id
+  };
+  const data = {
+    // this is the data that the
+    name,
+    ingredients,
+    preparation
+  };
+  // The new option is going to make findOneAndUpdate resolve with the edited doc
+  const options = {
+    new: true
+  };
+  Recipe.findOneAndUpdate(query, data, options)
     .then(recipe => {
       res.json({ success: true, recipe });
     })
