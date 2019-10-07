@@ -32,13 +32,14 @@ const userSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      //in this way we are telling that will bring the id of recipes
+      //in this way we are telling that will bring the id of recipes for the private page
       type: mongoose.Schema.Types.ObjectId,
       ref: "Recipe"
     }
   ],
   cookLater: [
     {
+      //in this way we are telling that will bring the id of recipes for the private page
       type: mongoose.Schema.Types.ObjectId,
       ref: "Recipe"
     }

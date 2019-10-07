@@ -17,10 +17,10 @@ export const loggedIn = () =>
       });
   });
 
-export const logInService = ({ username, password }) =>
+export const logInService = ({ email, password }) =>
   new Promise((resolve, reject) => {
     authAPI
-      .post("/login", { username, password })
+      .post("/login", { email, password })
       .then(response => {
         const user = response.data.user;
         resolve(user);
@@ -30,10 +30,16 @@ export const logInService = ({ username, password }) =>
       });
   });
 
-export const signUpService = ({ username, password, campus, course }) =>
+export const signUpService = ({
+  email,
+  password,
+  firstName,
+  lastName,
+  username
+}) =>
   new Promise((resolve, reject) => {
     authAPI
-      .post("/signup", { username, password, campus, course })
+      .post("/signup", { email, password, firstName, lastName, username })
       .then(response => {
         const user = response.data.user;
         resolve(user);
