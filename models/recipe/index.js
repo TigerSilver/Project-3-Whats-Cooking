@@ -11,8 +11,8 @@ const recipeSchema = new Schema({
   _addedBy: {
     //this way is possible to grab the info of the user who publish the recipe
     type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true
+    ref: "User"
+    // required: true
   },
   ingredients: {
     type: String,
@@ -36,7 +36,7 @@ const recipeSchema = new Schema({
   },
   specifications: {
     type: String,
-    enum: ["Gluten-free", "Sugar-free", "Salt-free", "Cooked", "Cold"]
+    enum: ["Gluten-free", "Sugar-free", "Salt-free", "Hot", "Cold"]
   }
 });
 

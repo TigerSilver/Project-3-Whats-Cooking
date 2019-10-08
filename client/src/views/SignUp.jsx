@@ -55,26 +55,6 @@ export default class SignUpView extends Component {
         {/* onSubmit={this.onFormSubmit}  this goes in the next line*/}
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              placeholder="Email"
-              name="email"
-              type="email"
-              value={this.state.email}
-              onChange={this.onValueChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              placeholder="Password"
-              name="password"
-              type="password"
-              value={this.state.password}
-              onChange={this.onValueChange}
-            />
-          </Form.Group>
-          <Form.Group>
             <Form.Label>First Name</Form.Label>
             <Form.Control
               placeholder="Add your first name"
@@ -98,6 +78,26 @@ export default class SignUpView extends Component {
               placeholder="Username"
               name="username"
               value={this.state.username}
+              onChange={this.onValueChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              placeholder="Email"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onValueChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
               onChange={this.onValueChange}
             />
           </Form.Group>
