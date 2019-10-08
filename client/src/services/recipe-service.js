@@ -1,34 +1,16 @@
 import axios from "axios";
 
 const recipeAPI = axios.create({
-  baseURL: "/recipes"
+  baseURL: "/"
 });
 
-export const recipeService = ({
-  name,
-  _addedBy,
-  ingredients,
-  preparation,
-  image,
-  meal,
-  typeOfFood,
-  specifications
-}) =>
+export const listRecipes = () =>
   new Promise((resolve, reject) => {
     recipeAPI
-      .post("/home", {
-        name,
-        _addedBy,
-        ingredients,
-        preparation,
-        image,
-        meal,
-        typeOfFood,
-        specifications
-      })
+      .get("/recipes")
       .then(response => {
-        const recipe = response.data.recipes;
-        resolve(recipe);
+        const recipes = response.data.recipes;
+        resolve(recipes);
       })
       .catch(error => {
         console.log("SERVICE ERROR", error);
