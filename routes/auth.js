@@ -124,4 +124,27 @@ router.get("/loggedin", (req, res, next) => {
   res.status(403).json({ message: "Unauthorized" });
 });
 
+router.patch("/edit/:id", (req, res, next) => {
+  const { firstName, lastName } = req.body;
+  const query = {
+    _id: req.params.id
+  };
+  const data = {
+    // this is the data that the user can edit
+    firstName,
+    lastName
+  };
+  // The new option is going to make findOneAndUpdate resolve with the edited doc
+  const options = {
+    new: true
+  };
+  User.findOneAndUpdate(query, data, options)
+    .then(recipe => {
+      res.json({ success: true, recipe });
+    })
+    .catch(err => {
+      console.log("The editing went wrong", err);
+    });
+});
+
 module.exports = router;

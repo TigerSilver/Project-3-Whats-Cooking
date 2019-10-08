@@ -15,7 +15,7 @@ export default class SignUpView extends Component {
       lastName: "",
       username: ""
     };
-    //the methos needs to be bind for being able to work
+    //the methos needs to be bind for being able to work with this
     this.onValueChange = this.onValueChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }

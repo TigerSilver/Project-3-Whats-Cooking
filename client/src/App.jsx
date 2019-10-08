@@ -18,7 +18,7 @@ export default class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={PlaneView} />
-            <Route path="/signin" component={SignInView} />
+            <Route path="/login" component={SignInView} />
             <Route path="/signup" component={SignUpView} />
             <Route path="/home" component={HomeView} />
             {/* <Route path="/error/:code" component={ErrorView} />
