@@ -6,7 +6,7 @@ export default class PlaneView extends Component {
   render() {
     return (
       <div>
-        <h1>Don't know what to cook for dinner?</h1>
+        <h1>Don't know what to cook for meal?</h1>
         <p>
           What's Cooking, a social app for recipe sharing, is here to help!!!
         </p>

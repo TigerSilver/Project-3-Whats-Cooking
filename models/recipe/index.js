@@ -15,12 +15,12 @@ const recipeSchema = new Schema({
     required: true
   },
   ingredients: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   preparation: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   image: {
     type: String

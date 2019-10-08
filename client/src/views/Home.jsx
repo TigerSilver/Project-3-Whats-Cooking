@@ -26,7 +26,7 @@ export default class HomeView extends Component {
   render() {
     return (
       <div>
-        <Link to="/login">Profile photo</Link>
+        <Link to="/private">Profile photo</Link>
         <div>
           <Link to="/addRecipe">+</Link>
         </div>

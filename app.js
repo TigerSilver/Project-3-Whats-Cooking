@@ -9,13 +9,13 @@ const serveFavicon = require("serve-favicon");
 
 const expressSession = require("express-session");
 const passport = require("passport");
-const authRoute = require("./routes/auth");
 const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require("mongoose");
 
 const deserializeUserMiddleware = require("./middleware/deserialize-user");
 
 //Routers
+const authRoute = require("./routes/auth");
 const recipeRoute = require("./routes/recipe");
 
 const app = express();
@@ -50,7 +50,7 @@ app.use(passport.session());
 app.use("/auth", authRoute);
 
 //app will go to the routes
-app.use("/", recipeRoute);
+app.use("/recipe", recipeRoute);
 
 app.get("*", (req, res, next) => {
   res.sendFile(join(__dirname, "./client/build/index.html"));
