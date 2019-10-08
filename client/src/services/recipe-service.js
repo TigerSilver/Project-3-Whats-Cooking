@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const authAPI = axios.create({
+const recipeAPI = axios.create({
   baseURL: "/recipe"
 });
 
@@ -47,7 +47,7 @@ export const addRecipe = ({
       typeOfFood,
       specifications
     );
-    authAPI
+    recipeAPI
       .post("/addRecipe", {
         name,
         ingredients,
@@ -59,6 +59,19 @@ export const addRecipe = ({
       .then(response => {
         const newRecipe = response.data;
         resolve(newRecipe);
+        const recipeAPI = axios.create({
+          baseURL: "/"
+        });
+      });
+  });
+
+export const listRecipes = () =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .get("/recipes")
+      .then(response => {
+        const recipes = response.data.recipes;
+        resolve(recipes);
       })
       .catch(error => {
         console.log("SERVICE ERROR", error);
