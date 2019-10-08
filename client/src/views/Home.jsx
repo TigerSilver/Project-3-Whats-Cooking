@@ -30,7 +30,8 @@ export default class HomeView extends Component {
         <div>
           <Link to="/addRecipe">+</Link>
         </div>
-        <h1>This the Home of all the recipes</h1>
+        <h1>Home</h1>
+        <p>Here are presented all the published recipes.</p>
 
         <Button onClick={this.handleClick}>Log out</Button>
       </div>
