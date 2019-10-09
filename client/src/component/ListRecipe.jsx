@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-import * as RecipeService from "./../services/recipe-service";
+// import * as RecipeService from "./../services/recipe-service";
 import { Link } from "react-router-dom";
 import UpdateRecipe from "../views/UpdateRecipe";
 

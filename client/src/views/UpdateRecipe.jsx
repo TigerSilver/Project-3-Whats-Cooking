@@ -9,6 +9,16 @@ export default class UpdateRecipeView extends Component {
     this.state = {
       recipe: this.props.recipeInfo
     };
+    this.onValueChange = this.onValueChange.bind(this);
+  }
+
+  onValueChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      //setState will allow to update the state
+      [name]: value
+    });
   }
 
   render() {

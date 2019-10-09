@@ -69,7 +69,7 @@ export default class HomeView extends Component {
           <p>Here are presented all the published recipes.</p>
 
           {this.state.recipes.map(recipes => (
-            <Card key={recipes._id}>
+            <Card key={recipes._id} style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>{recipes.name}</Card.Title>
                 <Link to={`/recipeDetail/${recipes._id}`} variant="primary">
