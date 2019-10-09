@@ -28,6 +28,7 @@ router.post("/signup", (req, res, next) => {
     res.status(400).json({
       message: "Please make your password at least 10 digits long for security"
     });
+    return;
   }
 
   User.findOne(
@@ -37,13 +38,13 @@ router.post("/signup", (req, res, next) => {
     (err, foundUser) => {
       if (err) {
         res.status(500).json({
-          message: "Email check went bad."
+          message: "Email check went bad"
         });
         return;
       }
       if (foundUser) {
         res.status(400).json({
-          message: "Email taken.Choose another one."
+          message: "Email taken. Choose another one"
         });
         return;
       }
@@ -63,7 +64,7 @@ router.post("/signup", (req, res, next) => {
       aNewUser.save(err => {
         if (err) {
           res.status(400).json({
-            message: "Saving user to database went wrong."
+            message: "Saving user to database went wrong"
           });
           console.log(email, username, firstName, lastName, password);
           return;
@@ -112,7 +113,7 @@ router.post("/login", (req, res, next) => {
 
 router.post("/logout", (req, res, next) => {
   req.logout(); // already defined by passport not necessary in this req.session.destroy
-  res.status(200).json({ message: "Log out succesful" });
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 router.get("/loggedin", (req, res, next) => {

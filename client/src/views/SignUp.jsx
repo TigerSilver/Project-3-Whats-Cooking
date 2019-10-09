@@ -45,6 +45,7 @@ export default class SignUpView extends Component {
       })
       .catch(error => {
         console.log("ERROR", error);
+        alert(error.message);
       });
   }
 
