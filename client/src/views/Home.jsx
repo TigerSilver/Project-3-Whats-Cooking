@@ -39,9 +39,7 @@ export default class HomeView extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
 
-  componentDidMount() {
     AuthenticationServices.loggedIn()
       .then(user => {
         this.setState({
