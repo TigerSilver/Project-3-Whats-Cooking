@@ -14,7 +14,8 @@ export default class HomeView extends Component {
     // methods need to be bind in order to work
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      recipes: []
+      recipes: [],
+      user: null
     };
   }
 
@@ -39,9 +40,6 @@ export default class HomeView extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
-
-  componentDidMount() {
     AuthenticationServices.loggedIn()
       .then(user => {
         this.setState({
