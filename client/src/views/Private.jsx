@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { loggedIn } from "./../services/auth-service";
 
 import { Link } from "react-router-dom";
-// import { listRecipes } from "../services/recipe-service";
-// import Card from "react-bootstrap/Card";
 
 import ListRecipe from "../component/ListRecipe";
+
+import * as AuthenticationServices from "./../services/auth-service";
 
 export default class PrivateView extends Component {
   constructor(props) {
@@ -29,6 +29,16 @@ export default class PrivateView extends Component {
       .catch(error => {
         console.log(error);
       });
+    AuthenticationServices.loggedIn()
+      .then(user => {
+        this.setState({
+          user
+        });
+        // console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
     //TODO : find all recipes with the list recipe service
     // listOfRecipes();
@@ -38,14 +48,21 @@ export default class PrivateView extends Component {
   }
 
   render() {
+    const user = this.state.user;
     return (
-      <div>
-        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-        {/* TODO map through the array of recipes (if it exists) */}
-        <Link to="/home">Home</Link>
-        <h1>Hellooooo private</h1>
-        <ListRecipe />
-      </div>
+      (!user && (
+        <div>
+          <h1>Not allowed...</h1>
+        </div>
+      )) || (
+        <div>
+          {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+          {/* TODO map through the array of recipes (if it exists) */}
+          <Link to="/home">Home</Link>
+          <h1>Hello, {this.state.user.firstName}</h1>
+          <ListRecipe />
+        </div>
+      )
     );
   }
 }

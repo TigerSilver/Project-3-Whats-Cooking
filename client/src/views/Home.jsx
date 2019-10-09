@@ -61,7 +61,7 @@ export default class HomeView extends Component {
         </div>
       )) || (
         <div>
-          <Link to="/private">Profile photo</Link>
+          <Link to="/private">Profile</Link>
           <div>
             <Link to="/addRecipe">+</Link>
           </div>
