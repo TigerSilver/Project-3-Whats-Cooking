@@ -72,6 +72,8 @@ export default class PrivateView extends Component {
           {/* TODO map through the array of recipes (if it exists) */}
           <Link to="/home">Home</Link>
           <h1>Hello, {this.state.user.firstName}</h1>
+          <br />
+          <p>Below you can find your recipes:</p>
           <ListRecipe recipes={this.state.recipes} />
         </div>
       )

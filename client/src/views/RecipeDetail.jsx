@@ -35,13 +35,12 @@ export default class DetailView extends Component {
     return (
       <div>
         <Link to="/home"> Home </Link>
-        <h1>RECIPE DETAIL</h1>
+        <h1>Recipe Details</h1>
         {this.state.recipe && (
           <Card key={this.state.recipe._id} style={{ width: "18rem" }}>
             <Card.Title> {this.state.recipe.name} </Card.Title>
             <Card.Text>{this.state.recipe.ingredients}</Card.Text>
             <Card.Text>{this.state.recipe.preparation}</Card.Text>
-            {/* <Button variant="primary">Go somewhere</Button> */}
           </Card>
         )}
       </div>

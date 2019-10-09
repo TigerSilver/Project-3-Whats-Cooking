@@ -72,11 +72,9 @@ export default class HomeView extends Component {
             <Card key={recipes._id}>
               <Card.Body>
                 <Card.Title>{recipes.name}</Card.Title>
-                <Card.Text>{recipes.ingredients}</Card.Text>
-                <Card.Text>{recipes.preparation}</Card.Text>
-                <Card.Text>{recipes.meal}</Card.Text>
-                <Card.Text>{recipes.typeOfFood}</Card.Text>
-                <Card.Text>{recipes.specifications}</Card.Text>
+                <Link to={`/recipeDetail/${recipes._id}`} variant="primary">
+                  See more
+                </Link>
               </Card.Body>
             </Card>
           ))}
