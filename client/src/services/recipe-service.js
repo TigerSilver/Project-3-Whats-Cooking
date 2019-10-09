@@ -79,6 +79,20 @@ export const listRecipes = () =>
       });
   });
 
+export const detail = id =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .get(`/recipedetail/${id}`) //take out /recipe
+      .then(response => {
+        const recipe = response.data.recipe;
+        resolve(recipe); // need to declare the const of recipe
+      })
+      .catch(error => {
+        console.log("SERVICE ERROR", error);
+        reject(error);
+      });
+  });
+
 // export const logOutService = () =>
 //   new Promise((resolve, reject) => {
 //     authAPI

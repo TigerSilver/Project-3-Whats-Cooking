@@ -30,7 +30,7 @@ router.post("/addRecipe", (req, res, next) => {
 
   Recipe.create({
     name,
-    //_addedBy: req.user._id, //this pick the user id with all the info
+    _addedBy: req.user._id, //this pick the user id with all the info
     ingredients,
     preparation,
     meal,

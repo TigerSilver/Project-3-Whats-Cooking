@@ -9,7 +9,7 @@ export const loggedIn = () =>
     authAPI
       .get("/loggedin")
       .then(response => {
-        const user = response.data.user;
+        const user = response.data;
         resolve(user);
       })
       .catch(error => {
