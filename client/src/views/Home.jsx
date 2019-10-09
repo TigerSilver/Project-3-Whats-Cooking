@@ -11,7 +11,7 @@ import * as AuthenticationServices from "./../services/auth-service";
 export default class HomeView extends Component {
   constructor(props) {
     super(props);
-    //methods need to be bind in order to work
+    // methods need to be bind in order to work
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       recipes: []
@@ -41,31 +41,51 @@ export default class HomeView extends Component {
       });
   }
 
+  componentDidMount() {
+    AuthenticationServices.loggedIn()
+      .then(user => {
+        this.setState({
+          user
+        });
+        // console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
+    const user = this.state.user;
     return (
-      <div>
-        <Link to="/private">Profile photo</Link>
+      (!user && (
         <div>
-          <Link to="/addRecipe">+</Link>
+          <h1>Not allowed...</h1>
         </div>
-        <h1>Home</h1>
-        <p>Here are presented all the published recipes.</p>
+      )) || (
+        <div>
+          <Link to="/private">Profile photo</Link>
+          <div>
+            <Link to="/addRecipe">+</Link>
+          </div>
+          <h1>Home</h1>
+          <p>Here are presented all the published recipes.</p>
 
-        {this.state.recipes.map(recipes => (
-          <Card>
-            <Card.Body>
-              <Card.Title>{recipes.name}</Card.Title>
-              <Card.Text>{recipes.ingredients}</Card.Text>
-              <Card.Text>{recipes.preparation}</Card.Text>
-              <Card.Text>{recipes.meal}</Card.Text>
-              <Card.Text>{recipes.typeOfFood}</Card.Text>
-              <Card.Text>{recipes.specifications}</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
+          {this.state.recipes.map(recipes => (
+            <Card>
+              <Card.Body>
+                <Card.Title>{recipes.name}</Card.Title>
+                <Card.Text>{recipes.ingredients}</Card.Text>
+                <Card.Text>{recipes.preparation}</Card.Text>
+                <Card.Text>{recipes.meal}</Card.Text>
+                <Card.Text>{recipes.typeOfFood}</Card.Text>
+                <Card.Text>{recipes.specifications}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
 
-        <Button onClick={this.handleClick}>Log out</Button>
-      </div>
+          <Button onClick={this.handleClick}>Log out</Button>
+        </div>
+      )
     );
   }
 }
