@@ -7,6 +7,8 @@ import ListRecipe from "../component/ListRecipe";
 
 import * as AuthenticationServices from "./../services/auth-service";
 
+import * as RecipeService from "./../services/recipe-service";
+
 export default class PrivateView extends Component {
   constructor(props) {
     super(props);
@@ -29,12 +31,22 @@ export default class PrivateView extends Component {
       .catch(error => {
         console.log(error);
       });
+
     AuthenticationServices.loggedIn()
       .then(user => {
         this.setState({
           user
         });
         // console.log(user);
+        RecipeService.addedBy(user._id) //like is a view can have accsess to this.props.match
+          .then(recipes => {
+            this.setState({
+              recipes
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          });
       })
       .catch(error => {
         console.log(error);
@@ -60,7 +72,7 @@ export default class PrivateView extends Component {
           {/* TODO map through the array of recipes (if it exists) */}
           <Link to="/home">Home</Link>
           <h1>Hello, {this.state.user.firstName}</h1>
-          <ListRecipe />
+          <ListRecipe recipes={this.state.recipes} />
         </div>
       )
     );

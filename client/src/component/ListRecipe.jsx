@@ -17,17 +17,6 @@ export default class ListRecipe extends Component {
     this.onValueChange = this.onValueChange.bind(this);
   }
 
-  componentDidMount() {
-    RecipeService.listRecipes()
-      .then(recipes => {
-        this.setState({
-          recipes
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
   showForm() {
     this.setState({
       toggle: !this.state.toggle
@@ -46,8 +35,8 @@ export default class ListRecipe extends Component {
   render() {
     return (
       <div>
-        {this.state.recipes.map(recipe => (
-          <div>
+        {this.props.recipes.map(recipe => (
+          <div key={recipe._id}>
             <Card key={recipe._addedBy} style={{ width: "18rem" }}>
               <Card.Title>
                 <Link to={`/recipedetail/${recipe._id}`}> {recipe.name} </Link>{" "}

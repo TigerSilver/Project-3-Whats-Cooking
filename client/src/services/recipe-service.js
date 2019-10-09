@@ -59,9 +59,9 @@ export const addRecipe = ({
       .then(response => {
         const newRecipe = response.data;
         resolve(newRecipe);
-        const recipeAPI = axios.create({
-          baseURL: "/"
-        });
+        // const recipeAPI = axios.create({
+        //   baseURL: "/"
+        // });
       });
   });
 
@@ -86,6 +86,20 @@ export const detail = id =>
       .then(response => {
         const recipe = response.data.recipe;
         resolve(recipe); // need to declare the const of recipe
+      })
+      .catch(error => {
+        console.log("SERVICE ERROR", error);
+        reject(error);
+      });
+  });
+
+export const addedBy = id =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .get(`/addedBy/${id}`)
+      .then(response => {
+        const recipe = response.data.recipes;
+        resolve(recipe);
       })
       .catch(error => {
         console.log("SERVICE ERROR", error);

@@ -69,7 +69,7 @@ export default class HomeView extends Component {
           <p>Here are presented all the published recipes.</p>
 
           {this.state.recipes.map(recipes => (
-            <Card>
+            <Card key={recipes._id}>
               <Card.Body>
                 <Card.Title>{recipes.name}</Card.Title>
                 <Card.Text>{recipes.ingredients}</Card.Text>

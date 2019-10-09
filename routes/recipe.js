@@ -78,6 +78,7 @@ router.get(
   routeGuardMiddleware(true),
   (req, res, next) => {
     Recipe.findById({ _id: req.params.id })
+      .populate("_addedBy")
       .then(recipe => {
         res.json({ success: true, recipe });
       })
@@ -86,11 +87,12 @@ router.get(
       });
   }
 );
+router.get("/addedBy/:id", (req, res, next) => {
+  // console.log(req.params.id);
 
-router.get("/addedBy/:id", routeGuardMiddleware(true), (req, res, next) => {
-  Recipe.findById({ _id: req.params.id })
-    .then(recipe => {
-      res.json({ success: true, recipe });
+  Recipe.find({ _addedBy: req.params.id })
+    .then(recipes => {
+      res.json({ success: true, recipes });
     })
     .catch(err => {
       console.log("Charge details went wrong", err);
