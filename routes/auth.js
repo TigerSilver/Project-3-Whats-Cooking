@@ -5,10 +5,13 @@ const router = Router();
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
+// Below is the middleware for backend protection:
+const routeGuardMiddleware = require("./../middleware/route-guard");
+
 // Here we require our user model, in order to grab the schema
 const User = require("./../models/user");
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", routeGuardMiddleware(false), (req, res, next) => {
   const {
     firstName,
     lastName,
@@ -87,7 +90,7 @@ router.post("/signup", (req, res, next) => {
   );
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", routeGuardMiddleware(false), (req, res, next) => {
   passport.authenticate("local", (error, logged, failure) => {
     if (error) {
       res.status(500).json({ message: "The authentication went wrong" });
@@ -111,12 +114,12 @@ router.post("/login", (req, res, next) => {
   })(req, res, next); // ask ze what is happening here
 });
 
-router.post("/logout", (req, res, next) => {
+router.post("/logout", routeGuardMiddleware(true), (req, res, next) => {
   req.logout(); // already defined by passport not necessary in this req.session.destroy
   res.status(200).json({ message: "Logged out successfully" });
 });
 
-router.get("/loggedin", (req, res, next) => {
+router.get("/loggedin", routeGuardMiddleware(true), (req, res, next) => {
   if (req.isAuthenticated()) {
     //is already defined by passport
     res.status(200).json(req.user);
@@ -125,7 +128,7 @@ router.get("/loggedin", (req, res, next) => {
   res.status(403).json({ message: "Unauthorized" });
 });
 
-router.patch("/edit/:id", (req, res, next) => {
+router.patch("/edit/:id", routeGuardMiddleware(true), (req, res, next) => {
   const { firstName, lastName } = req.body;
   const query = {
     _id: req.params.id

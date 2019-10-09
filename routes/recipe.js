@@ -5,7 +5,10 @@ const router = Router();
 
 const Recipe = require("../models/recipe");
 
-router.get("/recipes", (req, res, next) => {
+// Below is the middleware for backend protection:
+const routeGuardMiddleware = require("./../middleware/route-guard");
+
+router.get("/recipes", routeGuardMiddleware(true), (req, res, next) => {
   Recipe.find({}, (error, recipes) => {
     if (error) {
       next(error);
@@ -15,7 +18,7 @@ router.get("/recipes", (req, res, next) => {
   });
 });
 
-router.post("/addRecipe", (req, res, next) => {
+router.post("/addRecipe", routeGuardMiddleware(true), (req, res, next) => {
   const {
     //the same name: name, etc
     name,
@@ -46,7 +49,7 @@ router.post("/addRecipe", (req, res, next) => {
     });
 });
 
-router.patch("/edit/:id", (req, res, next) => {
+router.patch("/edit/:id", routeGuardMiddleware(true), (req, res, next) => {
   const { name, ingredients, preparation } = req.body;
   const query = {
     _id: req.params.id
@@ -70,17 +73,21 @@ router.patch("/edit/:id", (req, res, next) => {
     });
 });
 
-router.get("/recipeDetail/:id", (req, res, next) => {
-  Recipe.findById({ _id: req.params.id })
-    .then(recipe => {
-      res.json({ success: true, recipe });
-    })
-    .catch(err => {
-      console.log("Charge details went wrong", err);
-    });
-});
+router.get(
+  "/recipeDetail/:id",
+  routeGuardMiddleware(true),
+  (req, res, next) => {
+    Recipe.findById({ _id: req.params.id })
+      .then(recipe => {
+        res.json({ success: true, recipe });
+      })
+      .catch(err => {
+        console.log("Charge details went wrong", err);
+      });
+  }
+);
 
-router.delete("/delete/:id", (req, res, next) => {
+router.delete("/delete/:id", routeGuardMiddleware(true), (req, res, next) => {
   Recipe.remove({ _id: req.params.id })
     .then(result => {
       res.json({ success: true, result });
