@@ -87,6 +87,16 @@ router.get(
   }
 );
 
+router.get("/addedBy/:id", routeGuardMiddleware(true), (req, res, next) => {
+  Recipe.findById({ _id: req.params.id })
+    .then(recipe => {
+      res.json({ success: true, recipe });
+    })
+    .catch(err => {
+      console.log("Charge details went wrong", err);
+    });
+});
+
 router.delete("/delete/:id", routeGuardMiddleware(true), (req, res, next) => {
   Recipe.remove({ _id: req.params.id })
     .then(result => {

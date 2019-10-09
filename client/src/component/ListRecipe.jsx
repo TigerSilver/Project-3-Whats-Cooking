@@ -14,6 +14,7 @@ export default class ListRecipe extends Component {
       toggle: false
     };
     this.showForm = this.showForm.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,15 @@ export default class ListRecipe extends Component {
   showForm() {
     this.setState({
       toggle: !this.state.toggle
+    });
+  }
+
+  onValueChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      //setState will allow to update the state
+      [name]: value
     });
   }
 
