@@ -27,7 +27,7 @@ export default class App extends Component {
             <Route path="/home" component={HomeView} />
             <Route path="/addRecipe" component={addRecipeView} />
             <Route path="/private" component={PrivateView} />
-            <Route path="/recipedetail/:id" component={DetailView} />
+            <Route path="/recipeDetail/:id" component={DetailView} />
             <Route path="/edit/:id" component={UpdateRecipeView} />
 
             {/* <Route path="/error/:code" component={ErrorView} />
