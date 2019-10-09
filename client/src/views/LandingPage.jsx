@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-export default class PlaneView extends Component {
+export default class LandingView extends Component {
   render() {
     return (
       <div>
