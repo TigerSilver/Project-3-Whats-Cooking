@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import * as RecipeService from "./../services/recipe-service";
 
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 
 export default class DetailView extends Component {
@@ -34,14 +34,14 @@ export default class DetailView extends Component {
   render() {
     return (
       <div>
+        <Link to="/home"> Home </Link>
         <h1>RECIPE DETAIL</h1>
         {this.state.recipe && (
           <Card key={this.state.recipe._id} style={{ width: "18rem" }}>
             <Card.Title> {this.state.recipe.name} </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              Card Subtitle
-            </Card.Subtitle>
-            <Button variant="primary">Go somewhere</Button>
+            <Card.Text>{this.state.recipe.ingredients}</Card.Text>
+            <Card.Text>{this.state.recipe.preparation}</Card.Text>
+            {/* <Button variant="primary">Go somewhere</Button> */}
           </Card>
         )}
       </div>

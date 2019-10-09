@@ -11,6 +11,7 @@ import HomeView from "./views/Home";
 import addRecipeView from "./views/AddRecipe";
 import PrivateView from "./views/Private";
 import DetailView from "./views/RecipeDetail";
+import UpdateRecipeView from "./views/UpdateRecipe";
 // import ErrorView from "./views/Error";
 // import CatchAllView from "./views/CatchAll";
 
@@ -27,6 +28,7 @@ export default class App extends Component {
             <Route path="/addRecipe" component={addRecipeView} />
             <Route path="/private" component={PrivateView} />
             <Route path="/recipedetail/:id" component={DetailView} />
+            <Route path="/edit/:id" component={UpdateRecipeView} />
 
             {/* <Route path="/error/:code" component={ErrorView} />
             <Route path="/" component={CatchAllView} /> */}

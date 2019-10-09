@@ -4,13 +4,16 @@ import Button from "react-bootstrap/Button";
 
 import * as RecipeService from "./../services/recipe-service";
 import { Link } from "react-router-dom";
+import UpdateRecipe from "../views/UpdateRecipe";
 
 export default class ListRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      recipes: [],
+      toggle: false
     };
+    this.showForm = this.showForm.bind(this);
   }
 
   componentDidMount() {
@@ -24,20 +27,28 @@ export default class ListRecipe extends Component {
         console.log(error);
       });
   }
+  showForm() {
+    this.setState({
+      toggle: !this.state.toggle
+    });
+  }
 
   render() {
     return (
       <div>
         {this.state.recipes.map(recipe => (
-          <Link to={`/recipedetail/${recipe._id}`}>
+          <div>
             <Card key={recipe._addedBy} style={{ width: "18rem" }}>
-              <Card.Title> {recipe.name} </Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Card Subtitle
-              </Card.Subtitle>
-              <Button variant="primary">Go somewhere</Button>
+              <Card.Title>
+                <Link to={`/recipedetail/${recipe._id}`}> {recipe.name} </Link>{" "}
+              </Card.Title>
+              <Button onClick={this.showForm} variant="primary">
+                Edit
+              </Button>
+              {this.state.toggle && <UpdateRecipe recipeInfo={recipe} />}
+              <Button variant="danger">Delete</Button>
             </Card>
-          </Link>
+          </div>
         ))}
       </div>
     );

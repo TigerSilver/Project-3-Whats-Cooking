@@ -52,7 +52,7 @@ router.patch("/edit/:id", (req, res, next) => {
     _id: req.params.id
   };
   const data = {
-    // this is the data that the
+    // this is the data that can be changed by the user
     name,
     ingredients,
     preparation
@@ -70,7 +70,7 @@ router.patch("/edit/:id", (req, res, next) => {
     });
 });
 
-router.get("/recipeDetail/:id", (req, res, next) => {
+router.get("/recipedetail/:id", (req, res, next) => {
   Recipe.findById({ _id: req.params.id })
     .then(recipe => {
       res.json({ success: true, recipe });
