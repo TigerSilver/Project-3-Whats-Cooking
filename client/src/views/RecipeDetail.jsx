@@ -4,6 +4,7 @@ import * as RecipeService from "./../services/recipe-service";
 
 import { Link } from "react-router-dom";
 
+import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
@@ -37,35 +38,48 @@ export default class DetailView extends Component {
       <div>
         {this.state.recipe && (
           <Fragment>
-            <div className="py-5 bg-primary">
-              <Container>
-                <h1>{this.state.recipe.name}</h1>
-              </Container>
-            </div>
             <Container>
-              <img src={this.state.recipe.image} />
-              <Card.Title>
-                <strong>Name:</strong>
-              </Card.Title>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Image
+                  src={this.state.recipe.image}
+                  thumbnail
+                  width="550"
+                  height="400"
+                />
+                <h1 className="appGreen-text">{this.state.recipe.name}</h1>
+              </div>
+              <br />
               <Card.Text>
-                <strong>Ingredients:</strong> {this.state.recipe.ingredients}
+                <strong className="appGreen-text">Ingredients:</strong>{" "}
+                {this.state.recipe.ingredients}
               </Card.Text>
               <Card.Text>
-                <strong>Preparation:</strong> {this.state.recipe.preparation}
+                <strong className="appGreen-text">Preparation:</strong>{" "}
+                {this.state.recipe.preparation}
               </Card.Text>
               <Card.Text>
-                <strong>Meal:</strong> {this.state.recipe.meal}
+                <strong className="appGreen-text">Meal:</strong>{" "}
+                {this.state.recipe.meal}
               </Card.Text>
               <Card.Text>
-                <strong>Specifications:</strong>{" "}
+                <strong className="appGreen-text">Specifications:</strong>{" "}
                 {this.state.recipe.specifications}
               </Card.Text>
               <Card.Text>
-                <strong>Type of food:</strong> {this.state.recipe.typeOfFood}
+                <strong className="appGreen-text">Type of food:</strong>{" "}
+                {this.state.recipe.typeOfFood}
               </Card.Text>
             </Container>
           </Fragment>
         )}
+        <br />
       </div>
     );
   }

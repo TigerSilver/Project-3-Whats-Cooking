@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Link, withRouter } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import "./../App.css";
@@ -48,8 +49,13 @@ class AppNavbar extends Component {
             <Navbar.Collapse className="justify-content-start">
               {user && (
                 <Navbar.Text className="text-white">
-                  Signed in as:{" "}
-                  <Link to="/private" className="btn">
+                  <Image
+                    src={user.image}
+                    height="40"
+                    width="40"
+                    roundedCircle
+                  />{" "}
+                  <Link to="/private" className="btn text-white">
                     {user.firstName}
                   </Link>
                 </Navbar.Text>
@@ -59,7 +65,7 @@ class AppNavbar extends Component {
               Home
             </Link>
             <Navbar.Collapse className="justify-content-end">
-              <Link to="/addRecipe" className="btn">
+              <Link to="/addRecipe" className="btn text-white">
                 New Recipe
               </Link>
               <Button className="btn-light" onClick={this.handleClick}>
