@@ -53,12 +53,16 @@ export default class SignUpView extends Component {
   render() {
     return (
       <Container
-        className="bg-appGreen text-white"
+        className="text-white"
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          flexDirection: "column"
+          flexDirection: "column",
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          backgroundColor: "#2E8B57"
         }}
       >
         <h3>Sign Up for a New Account</h3>
@@ -116,7 +120,9 @@ export default class SignUpView extends Component {
               long)
             </Form.Text>
           </Form.Group>
-          <Button type="submit">Register</Button>
+          <Button className="btn-light" type="submit">
+            Register
+          </Button>
         </Form>
         <br />
       </Container>

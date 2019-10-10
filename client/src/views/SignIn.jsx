@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 import * as AuthenticationServices from "./../services/auth-service";
 
@@ -41,11 +42,24 @@ export default class SignInView extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Log In</h1>
+      <Container
+        className="text-white"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          backgroundColor: "#2E8B57"
+        }}
+      >
+        <h3>Log In into Your Account</h3>
+        <br />
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
               placeholder="Email"
               name="email"
@@ -63,9 +77,12 @@ export default class SignInView extends Component {
               onChange={this.onValueChange}
             />
           </Form.Group>
-          <Button type="submit">Sign in</Button>
+          <Button className="btn-light" type="submit">
+            Log in
+          </Button>
         </Form>
-      </div>
+        <br />
+      </Container>
     );
   }
 }
