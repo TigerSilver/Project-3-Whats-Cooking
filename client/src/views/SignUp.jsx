@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 import * as AuthenticationServices from "./../services/auth-service";
 
@@ -51,7 +52,7 @@ export default class SignUpView extends Component {
 
   render() {
     return (
-      <div>
+      <Container className="bg-appGreen text-white">
         <h1>Sign Up</h1>
         {/* onSubmit={this.onFormSubmit}  this goes in the next line*/}
         <Form onSubmit={this.onFormSubmit}>
@@ -108,7 +109,7 @@ export default class SignUpView extends Component {
           </Form.Group>
           <Button type="submit">Submit</Button>
         </Form>
-      </div>
+      </Container>
     );
   }
 }
