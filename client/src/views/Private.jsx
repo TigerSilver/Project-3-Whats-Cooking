@@ -76,7 +76,7 @@ export default class PrivateView extends Component {
             <h1>Hello, {this.state.user.firstName}</h1>
             <br />
             <p>Below you can find your recipes:</p>
-            <ListRecipe recipes={this.state.recipes} />
+            <ListRecipe recipes={this.state.recipes} {...this.props} />
           </div>
         )}
       </Container>

@@ -62,7 +62,7 @@ router.post(
 
 router.patch("/edit/:id", routeGuardMiddleware(true), (req, res, next) => {
   const { name, ingredients, preparation } = req.body;
-  const query = {
+  const id = {
     _id: req.params.id
   };
   const data = {
@@ -75,7 +75,7 @@ router.patch("/edit/:id", routeGuardMiddleware(true), (req, res, next) => {
   const options = {
     new: true
   };
-  Recipe.findOneAndUpdate(query, data, options)
+  Recipe.findOneAndUpdate(id, data, options)
     .then(recipe => {
       res.json({ success: true, recipe });
     })
@@ -98,6 +98,18 @@ router.get(
       });
   }
 );
+
+// router.get("/editrecipe/:id", routeGuardMiddleware(true), (req, res, next) => {
+//   Recipe.findById({ _id: req.params.id })
+//     .populate("_addedBy")
+//     .then(recipe => {
+//       res.json({ success: true, recipe });
+//     })
+//     .catch(err => {
+//       console.log("Charge details went wrong", err);
+//     });
+// });
+
 router.get("/addedBy/:id", (req, res, next) => {
   // console.log(req.params.id);
 

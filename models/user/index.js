@@ -28,8 +28,8 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   profilePicture: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   favorites: [
     {

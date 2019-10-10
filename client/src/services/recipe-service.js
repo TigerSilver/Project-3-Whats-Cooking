@@ -4,32 +4,6 @@ const recipeAPI = axios.create({
   baseURL: "/api/recipe"
 });
 
-// export const loggedIn = () =>
-//   new Promise((resolve, reject) => {
-//     authAPI
-//       .get("/loggedin")
-//       .then(response => {
-//         const user = response.data.user;
-//         resolve(user);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
-
-// export const logInService = ({ email, password }) =>
-//   new Promise((resolve, reject) => {
-//     authAPI
-//       .post("/login", { email, password })
-//       .then(response => {
-//         const user = response.data.user;
-//         resolve(user);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
-
 export const addRecipe = data =>
   new Promise((resolve, reject) => {
     const formData = new window.FormData();
@@ -88,40 +62,27 @@ export const addedBy = id =>
       });
   });
 
-// export const logOutService = () =>
-//   new Promise((resolve, reject) => {
-//     authAPI
-//       .post("/logout")
-//       .then(() => {
-//         resolve();
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
+export const editService = (id, updatedRecipe) =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .patch(`/edit/${id}`, updatedRecipe)
+      .then(response => {
+        const recipe = response.data;
+        resolve(recipe);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 
-// export const editService = ({ username, campus, course }) =>
-//   new Promise((resolve, reject) => {
-//     authAPI
-//       .post("/edit", { username, campus, course })
-//       .then(response => {
-//         const user = response.data.user;
-//         resolve(user);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
-
-// export const uploadService = data =>
-//   new Promise((resolve, reject) => {
-//     authAPI
-//       .post("/upload", data)
-//       .then(response => {
-//         const user = response.data.user;
-//         resolve(user);
-//       })
-//       .catch(error => {
-//         reject(error);
-//       });
-//   });
+export const deleteService = id =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .delete(`/delete/${id}`)
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
