@@ -61,9 +61,9 @@ class AppNavbar extends Component {
                 </Navbar.Text>
               )}
             </Navbar.Collapse>
-            <Link to="/home" className="btn">
+            {/* <Link to="/home" className="btn">
               Home
-            </Link>
+            </Link> */}
             <Navbar.Collapse className="justify-content-end">
               <Link to="/addRecipe" className="btn text-white">
                 New Recipe

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Image from "react-bootstrap/Image";
+
 import { Link } from "react-router-dom";
 
 export default class LandingView extends Component {
@@ -20,7 +22,7 @@ export default class LandingView extends Component {
           backgroundColor: "#2E8B57"
         }}
       >
-        <h1>[Logo Here]</h1>
+        <Image src="./../../Logo.png" height="490" width="481" fluid />
         <p>
           Don't know what to cook for dinner? What's Cooking, a social app for
           recipe sharing, is here to help.
