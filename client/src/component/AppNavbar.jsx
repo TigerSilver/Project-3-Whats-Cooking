@@ -46,23 +46,25 @@ class AppNavbar extends Component {
         >
           <Container>
             <Navbar.Collapse className="justify-content-start">
-              <Link to="/home" className="btn">
-                Home
-              </Link>
-            </Navbar.Collapse>
-            <Navbar.Collapse className="justify-content-end">
               {user && (
                 <Navbar.Text className="text-white">
-                  <Link to="/addRecipe" className="btn">
-                    New Recipe
-                  </Link>
                   Signed in as:{" "}
                   <Link to="/private" className="btn">
                     {user.firstName}
                   </Link>
-                  <Button onClick={this.handleClick}>Log out</Button>{" "}
                 </Navbar.Text>
               )}
+            </Navbar.Collapse>
+            <Link to="/home" className="btn">
+              Home
+            </Link>
+            <Navbar.Collapse className="justify-content-end">
+              <Link to="/addRecipe" className="btn">
+                New Recipe
+              </Link>
+              <Button className="btn-light" onClick={this.handleClick}>
+                Log out
+              </Button>
             </Navbar.Collapse>
           </Container>
         </Navbar>
