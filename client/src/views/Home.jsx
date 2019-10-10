@@ -63,7 +63,7 @@ export default class HomeView extends Component {
                           <Card.Title className="appGreen-text">
                             {recipes.name}
                           </Card.Title>
-                          <p>Published by: {recipes._addedBy.username}</p>
+                          <p>Author: {recipes._addedBy.username}</p>
                           <Link
                             to={`/recipeDetail/${recipes._id}`}
                             variant="primary"
