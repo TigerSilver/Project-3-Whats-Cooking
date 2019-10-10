@@ -104,7 +104,7 @@ export default class addRecipeView extends Component {
           </div>
         )) || (
           <div>
-            <h3>Share a New Recipe</h3>
+            <h3 className="appGreen-text">Share a New Recipe</h3>
             {/* add onSubmit on this form */}
             <Form onSubmit={this.onFormSubmit}>
               <Form.Group>
@@ -203,7 +203,9 @@ export default class addRecipeView extends Component {
                 />
               </Form.Group>
 
-              <Button type="submit">Submit</Button>
+              <Button className="btn-success" type="submit">
+                Submit
+              </Button>
             </Form>
           </div>
         )}
