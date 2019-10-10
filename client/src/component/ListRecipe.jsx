@@ -41,10 +41,11 @@ export default class ListRecipe extends Component {
               <Card.Title>
                 <Link to={`/recipedetail/${recipe._id}`}> {recipe.name} </Link>{" "}
               </Card.Title>
-              <Button onClick={this.showForm} variant="primary">
+              <Link to={`/edit/${recipe._id}`}> EDIT </Link>{" "}
+              {/* <Button onClick={this.showForm} variant="primary">
                 Edit
               </Button>
-              {this.state.toggle && <UpdateRecipe recipeInfo={recipe} />}
+              {this.state.toggle && <UpdateRecipe recipeInfo={recipe} />} */}
               <Button variant="danger">Delete</Button>
             </Card>
           </div>
