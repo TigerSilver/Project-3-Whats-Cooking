@@ -23,7 +23,7 @@ export default class UpdateRecipeView extends Component {
   componentDidMount() {
     detail(this.props.match.params.id)
       .then(recipes => {
-        console.log("RECIPE  DETAILS", recipes);
+        //console.log("RECIPE  DETAILS", recipes);
 
         this.setState({
           recipe: {

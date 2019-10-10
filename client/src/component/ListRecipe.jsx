@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 
 // import * as RecipeService from "./../services/recipe-service";
 import { Link } from "react-router-dom";
-import UpdateRecipe from "../views/UpdateRecipe";
+
+import * as RecipeService from "./../services/recipe-service";
 
 export default class ListRecipe extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class ListRecipe extends Component {
     };
     this.showForm = this.showForm.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
 
   showForm() {
@@ -32,6 +34,18 @@ export default class ListRecipe extends Component {
     });
   }
 
+  deleteRecipe(_id) {
+    console.log("eres tu", _id);
+
+    RecipeService.deleteService(_id)
+      .then(() => {
+        this.props.history.push("/home");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -46,7 +60,12 @@ export default class ListRecipe extends Component {
                 Edit
               </Button>
               {this.state.toggle && <UpdateRecipe recipeInfo={recipe} />} */}
-              <Button variant="danger">Delete</Button>
+              <Button
+                variant="danger"
+                onClick={() => this.deleteRecipe(recipe._id)}
+              >
+                Delete
+              </Button>
             </Card>
           </div>
         ))}

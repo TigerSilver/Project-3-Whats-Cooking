@@ -74,3 +74,15 @@ export const editService = (id, updatedRecipe) =>
         reject(error);
       });
   });
+
+export const deleteService = id =>
+  new Promise((resolve, reject) => {
+    recipeAPI
+      .delete(`/delete/${id}`)
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
