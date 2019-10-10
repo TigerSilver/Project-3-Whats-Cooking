@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { loggedIn } from "./../services/auth-service";
 
-import { Link } from "react-router-dom";
-
 import Container from "react-bootstrap/Container";
 
 import ListRecipe from "../component/ListRecipe";
@@ -53,12 +51,6 @@ export default class PrivateView extends Component {
       .catch(error => {
         console.log(error);
       });
-
-    //TODO : find all recipes with the list recipe service
-    // listOfRecipes();
-    //TODO : flter user recipes
-
-    //TODO : Save an arrray of user recipes in the state
   }
 
   render() {

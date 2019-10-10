@@ -25,6 +25,7 @@ export const listRecipes = () =>
     recipeAPI
       .get("/recipes")
       .then(response => {
+        console.log("FEEEEEEDBACK", response.data);
         const recipes = response.data.recipes;
         resolve(recipes);
       })

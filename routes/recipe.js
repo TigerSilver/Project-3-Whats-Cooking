@@ -8,15 +8,28 @@ const Recipe = require("../models/recipe");
 // Below is the middleware for backend protection:
 const routeGuardMiddleware = require("./../middleware/route-guard");
 
+// POPULATE ROUTE
 router.get("/recipes", routeGuardMiddleware(true), (req, res, next) => {
-  Recipe.find({}, (error, recipes) => {
-    if (error) {
-      next(error);
-    } else {
-      res.status(200).json({ recipes: recipes });
-    }
-  });
+  Recipe.find({})
+    .populate("_addedBy")
+    .then(recipes => {
+      res.json({ recipes }); // this data is the one that we will send to the front como data.
+    })
+    .catch(err => {
+      console.log("An error happened:", err);
+    });
 });
+
+//ORIGINAL ROUTE WITHOUT POPULATE
+// router.get("/recipes", routeGuardMiddleware(true), (req, res, next) => {
+//   Recipe.find({}, (error, recipes) => {
+//     if (error) {
+//       next(error);
+//     } else {
+//       res.status(200).json({ recipes: recipes });
+//     }
+//   });
+// });
 
 const uploader = require("../configs/cloudinary-setup");
 
