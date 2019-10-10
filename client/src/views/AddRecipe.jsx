@@ -104,8 +104,7 @@ export default class addRecipeView extends Component {
           </div>
         )) || (
           <div>
-            <Link to="/private">Profile photo</Link>
-            <div></div>
+            <h3>Share a New Recipe</h3>
             {/* add onSubmit on this form */}
             <Form onSubmit={this.onFormSubmit}>
               <Form.Group>

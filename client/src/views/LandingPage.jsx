@@ -12,8 +12,11 @@ export default class LandingView extends Component {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
-          paddingTop: "220px",
-          paddingBottom: "320px",
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: "0",
+          left: "0",
           backgroundColor: "#2E8B57"
         }}
       >
