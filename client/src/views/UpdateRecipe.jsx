@@ -69,9 +69,10 @@ export default class UpdateRecipeView extends Component {
     console.log("ID", this.props.match.params.id);
 
     return (
-      <div>
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
-        <Form onSubmit={this.onFormSubmit}>
+      <div className="center-content appGreen-text">
+        <h3>Update Your Recipe</h3>
+        <br />
+        <Form className="form-width" onSubmit={this.onFormSubmit}>
           <Form.Group>
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -86,6 +87,8 @@ export default class UpdateRecipeView extends Component {
               name="ingredients"
               value={this.state.recipe.ingredients}
               onChange={this.onValueChange}
+              as="textarea"
+              rows="2"
             />
           </Form.Group>
           <Form.Group>
@@ -94,10 +97,15 @@ export default class UpdateRecipeView extends Component {
               name="preparation"
               value={this.state.recipe.preparation}
               onChange={this.onValueChange}
+              as="textarea"
+              rows="7"
             />
           </Form.Group>
-          <Button type="submit">Update</Button>
+          <Button className="btn-success" type="submit">
+            Update
+          </Button>
         </Form>
+        <br />
       </div>
     );
   }
