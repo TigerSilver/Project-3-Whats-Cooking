@@ -6,7 +6,7 @@ export default class LandingView extends Component {
   render() {
     return (
       <div
-        class="text-white"
+        className="text-white"
         style={{
           display: "flex",
           alignItems: "center",

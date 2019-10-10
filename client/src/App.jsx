@@ -15,16 +15,44 @@ import UpdateRecipeView from "./views/UpdateRecipe";
 // import ErrorView from "./views/Error";
 // import CatchAllView from "./views/CatchAll";
 
+import AppNavbar from "./component/AppNavbar";
+
+import * as AuthenticationServices from "./services/auth-service";
+
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+  }
+
+  componentDidMount() {
+    AuthenticationServices.loggedIn()
+      .then(user => {
+        this.setState({
+          user
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
+          <AppNavbar user={this.state.user} />
           <Switch>
             <Route path="/" exact component={LandingView} />
             <Route path="/login" component={SignInView} />
             <Route path="/signup" component={SignUpView} />
-            <Route path="/home" component={HomeView} />
+            {/* <Route path="/home" component={HomeView} /> */}
+            <Route
+              path="/home"
+              render={props => <HomeView user={this.state.user} {...props} />}
+            />
             <Route path="/addRecipe" component={addRecipeView} />
             <Route path="/private" component={PrivateView} />
             <Route path="/recipeDetail/:id" component={DetailView} />

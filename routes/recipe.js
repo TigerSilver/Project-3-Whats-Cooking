@@ -18,36 +18,47 @@ router.get("/recipes", routeGuardMiddleware(true), (req, res, next) => {
   });
 });
 
-router.post("/addRecipe", routeGuardMiddleware(true), (req, res, next) => {
-  const {
-    //the same name: name, etc
-    name,
-    ingredients,
-    preparation,
-    meal,
-    typeOfFood,
-    specifications
-  } = req.body;
+const uploader = require("../configs/cloudinary-setup");
 
-  // const image = this part is when is added the cloudinary part
+router.post(
+  "/addRecipe",
+  routeGuardMiddleware(true),
+  uploader.single("image"),
+  (req, res, next) => {
+    const {
+      //the same name: name, etc
+      name,
+      ingredients,
+      preparation,
+      meal,
+      typeOfFood,
+      specifications
+    } = req.body;
+    console.log(req.file);
+    let image;
+    if (req.file) {
+      image = req.file.url;
+    }
+    // const image = this part is when is added the cloudinary part
 
-  Recipe.create({
-    name,
-    _addedBy: req.user._id, //this pick the user id with all the info
-    ingredients,
-    preparation,
-    meal,
-    typeOfFood,
-    specifications
-    // image: this part is when is added the cloudinary part
-  })
-    .then(recipe => {
-      res.json({ success: true, recipe }); // this data is the one that we will send to the front como data.
+    Recipe.create({
+      name,
+      _addedBy: req.user._id, //this pick the user id with all the info
+      ingredients,
+      preparation,
+      meal,
+      typeOfFood,
+      specifications,
+      image
     })
-    .catch(err => {
-      console.log("An error happened:", err);
-    });
-});
+      .then(recipe => {
+        res.json({ success: true, recipe }); // this data is the one that we will send to the front como data.
+      })
+      .catch(err => {
+        console.log("An error happened:", err);
+      });
+  }
+);
 
 router.patch("/edit/:id", routeGuardMiddleware(true), (req, res, next) => {
   const { name, ingredients, preparation } = req.body;

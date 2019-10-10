@@ -3,6 +3,8 @@ import { loggedIn } from "./../services/auth-service";
 
 import { Link } from "react-router-dom";
 
+import Container from "react-bootstrap/Container";
+
 import ListRecipe from "../component/ListRecipe";
 
 import * as AuthenticationServices from "./../services/auth-service";
@@ -62,21 +64,23 @@ export default class PrivateView extends Component {
   render() {
     const user = this.state.user;
     return (
-      (!user && (
-        <div>
-          <h1>Not allowed...</h1>
-        </div>
-      )) || (
-        <div>
-          {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-          {/* TODO map through the array of recipes (if it exists) */}
-          <Link to="/home">Home</Link>
-          <h1>Hello, {this.state.user.firstName}</h1>
-          <br />
-          <p>Below you can find your recipes:</p>
-          <ListRecipe recipes={this.state.recipes} />
-        </div>
-      )
+      <Container>
+        {(!user && (
+          <div>
+            <h1>Not allowed...</h1>
+          </div>
+        )) || (
+          <div>
+            {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+            {/* TODO map through the array of recipes (if it exists) */}
+            <Link to="/home">Home</Link>
+            <h1>Hello, {this.state.user.firstName}</h1>
+            <br />
+            <p>Below you can find your recipes:</p>
+            <ListRecipe recipes={this.state.recipes} />
+          </div>
+        )}
+      </Container>
     );
   }
 }

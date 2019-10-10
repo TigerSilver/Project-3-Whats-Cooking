@@ -30,38 +30,19 @@ const recipeAPI = axios.create({
 //       });
 //   });
 
-export const addRecipe = ({
-  name,
-  ingredients,
-  preparation,
-  meal,
-  typeOfFood,
-  specifications
-}) =>
+export const addRecipe = data =>
   new Promise((resolve, reject) => {
-    console.log(
-      "SERVICE LOG",
-      ingredients,
-      preparation,
-      meal,
-      typeOfFood,
-      specifications
-    );
+    const formData = new window.FormData();
+    for (let key in data) formData.append(key, data[key]);
     recipeAPI
-      .post("/addRecipe", {
-        name,
-        ingredients,
-        preparation,
-        meal,
-        typeOfFood,
-        specifications
-      })
+      .post("/addRecipe", formData)
       .then(response => {
         const newRecipe = response.data;
         resolve(newRecipe);
-        // const recipeAPI = axios.create({
-        //   baseURL: "/"
-        // });
+      })
+      .catch(error => {
+        console.log("SERVICE ERROR", error);
+        reject(error);
       });
   });
 
