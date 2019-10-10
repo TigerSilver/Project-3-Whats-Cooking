@@ -78,7 +78,7 @@ export default class SignInView extends Component {
             />
           </Form.Group>
           <Button className="btn-light" type="submit">
-            Log in
+            Log In
           </Button>
         </Form>
         <br />
