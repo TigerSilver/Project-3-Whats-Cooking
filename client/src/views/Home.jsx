@@ -5,6 +5,8 @@ import { listRecipes } from "./../services/recipe-service";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Navbar from "react-bootstrap/Navbar";
+import "./../App.css";
 
 import * as AuthenticationServices from "./../services/auth-service";
 
@@ -61,25 +63,36 @@ export default class HomeView extends Component {
         </div>
       )) || (
         <div>
-          <Link to="/private">Profile</Link>
-          <div>
-            <Link to="/addRecipe">+</Link>
+          <Navbar
+            style={{
+              backgroundColor: "#2E8B57"
+            }}
+          >
+            <Navbar.Collapse className="justify-content-start">
+              <Navbar.Text class="text-white">
+                Signed in as: <Link to="/private">[Profile Name]</Link>
+              </Navbar.Text>
+            </Navbar.Collapse>
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text class="text-white">
+                <Link to="/addRecipe">New Recipe</Link>
+              </Navbar.Text>
+            </Navbar.Collapse>
+          </Navbar>
+          <div className="body-background-app">
+            {this.state.recipes.map(recipes => (
+              <Card key={recipes._id} style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{recipes.name}</Card.Title>
+                  <Link to={`/recipeDetail/${recipes._id}`} variant="primary">
+                    See more
+                  </Link>
+                </Card.Body>
+              </Card>
+            ))}
+
+            <Button onClick={this.handleClick}>Log out</Button>
           </div>
-          <h1>Home</h1>
-          <p>Here are presented all the published recipes.</p>
-
-          {this.state.recipes.map(recipes => (
-            <Card key={recipes._id} style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>{recipes.name}</Card.Title>
-                <Link to={`/recipeDetail/${recipes._id}`} variant="primary">
-                  See more
-                </Link>
-              </Card.Body>
-            </Card>
-          ))}
-
-          <Button onClick={this.handleClick}>Log out</Button>
         </div>
       )
     );
