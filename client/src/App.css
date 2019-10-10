@@ -26,9 +26,13 @@
 }
 
 .body-background-app {
-  background-color: #fff8dc;
+  background-color: #fff7e6;
 }
 
 #nav-text {
   color: white;
+}
+
+.appGreen-text {
+  color: #2e8b57;
 }

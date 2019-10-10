@@ -4,6 +4,7 @@ import { listRecipes } from "./../services/recipe-service";
 
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -40,19 +41,42 @@ export default class HomeView extends Component {
             <h1>Not allowed...</h1>
           </div>
         )) || (
-          <div className="body-background-app">
+          <div>
             <Row>
               {this.state.recipes.map(recipes => (
                 <Col key={recipes._id} sm={6} className="mb-3">
                   <Card>
                     <Card.Body>
-                      <Card.Title>{recipes.name}</Card.Title>
-                      <Link
-                        to={`/recipeDetail/${recipes._id}`}
-                        variant="primary"
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between"
+                        }}
                       >
-                        See more
-                      </Link>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center"
+                          }}
+                        >
+                          <Card.Title className="appGreen-text">
+                            {recipes.name}
+                          </Card.Title>
+                          <Link
+                            to={`/recipeDetail/${recipes._id}`}
+                            variant="primary"
+                          >
+                            See more
+                          </Link>
+                        </div>
+                        <Image
+                          src={recipes.image}
+                          width="120"
+                          height="111"
+                          rounded
+                        />
+                      </div>
                     </Card.Body>
                   </Card>
                 </Col>
