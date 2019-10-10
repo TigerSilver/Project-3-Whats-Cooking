@@ -52,12 +52,21 @@ export default class SignUpView extends Component {
 
   render() {
     return (
-      <Container className="bg-appGreen text-white">
-        <h1>Sign Up</h1>
+      <Container
+        className="bg-appGreen text-white"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column"
+        }}
+      >
+        <h3>Sign Up for a New Account</h3>
         {/* onSubmit={this.onFormSubmit}  this goes in the next line*/}
+        <br />
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group>
-            <Form.Label>First Name</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               placeholder="Add your first name"
               name="firstName"
@@ -66,7 +75,7 @@ export default class SignUpView extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Last Name</Form.Label>
+            <Form.Label>Surname</Form.Label>
             <Form.Control
               placeholder="Add your last name"
               name="lastName"
@@ -84,7 +93,7 @@ export default class SignUpView extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
               placeholder="Email"
               name="email"
@@ -95,10 +104,6 @@ export default class SignUpView extends Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
-            <Form.Text>
-              (For security reasons, your password needs to be at least 8 digits
-              long)
-            </Form.Text>
             <Form.Control
               placeholder="Password"
               name="password"
@@ -106,9 +111,14 @@ export default class SignUpView extends Component {
               value={this.state.password}
               onChange={this.onValueChange}
             />
+            <Form.Text>
+              (For security reasons, your password needs to be at least 8 digits
+              long)
+            </Form.Text>
           </Form.Group>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Register</Button>
         </Form>
+        <br />
       </Container>
     );
   }
