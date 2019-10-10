@@ -103,10 +103,10 @@ export default class addRecipeView extends Component {
             <h1>Not allowed...</h1>
           </div>
         )) || (
-          <div>
+          <div className="center-content">
             <h3 className="appGreen-text">Share a New Recipe</h3>
-            {/* add onSubmit on this form */}
-            <Form onSubmit={this.onFormSubmit}>
+            <br />
+            <Form className="form-width" onSubmit={this.onFormSubmit}>
               <Form.Group>
                 <Form.Label>Name your recipe</Form.Label>
                 <Form.Control
@@ -182,6 +182,8 @@ export default class addRecipeView extends Component {
                   placeholder="Ingredients"
                   value={this.state.ingredients}
                   onChange={this.onValueChange}
+                  as="textarea"
+                  rows="2"
                 />
               </Form.Group>
               <Form.Group>
@@ -192,6 +194,8 @@ export default class addRecipeView extends Component {
                   placeholder="Preparation"
                   value={this.state.preparation}
                   onChange={this.onValueChange}
+                  as="textarea"
+                  rows="7"
                 />
               </Form.Group>
               <Form.Group>
@@ -202,13 +206,14 @@ export default class addRecipeView extends Component {
                   onChange={this.onInputFileChange}
                 />
               </Form.Group>
-
+              <br />
               <Button className="btn-success" type="submit">
                 Submit
               </Button>
             </Form>
           </div>
         )}
+        <br />
       </Container>
     );
   }

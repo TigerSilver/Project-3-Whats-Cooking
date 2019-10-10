@@ -66,6 +66,7 @@ export default class HomeView extends Component {
                           <Link
                             to={`/recipeDetail/${recipes._id}`}
                             variant="primary"
+                            className="text-success"
                           >
                             See more
                           </Link>
