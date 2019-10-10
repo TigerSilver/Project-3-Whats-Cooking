@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authAPI = axios.create({
-  baseURL: "/auth"
+  baseURL: "/api/auth"
 });
 
 export const loggedIn = () =>
@@ -75,9 +75,13 @@ export const editService = ({ username, campus, course }) =>
       });
   });
 
+const cloudAPI = axios.create({
+  baseURL: "/api/cloud"
+});
+
 export const uploadService = data =>
   new Promise((resolve, reject) => {
-    authAPI
+    cloudAPI
       .post("/upload", data)
       .then(response => {
         const user = response.data.user;

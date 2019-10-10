@@ -13,7 +13,6 @@ const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require("mongoose");
 
 const deserializeUserMiddleware = require("./middleware/deserialize-user");
-const cors = require("cors");
 
 //Routers
 const authRoute = require("./routes/auth");
@@ -30,14 +29,6 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// allow access to the API from different domains/origins
-app.use(
-  cors({
-    // this could be multiple domains/origins, but we will allow just our React app
-    origin: ["http://localhost:3010"]
-  })
-);
 
 app.use(
   expressSession({
@@ -58,11 +49,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //authRoute have to be here so is able to grab all the configuration from the upper lines to work
-app.use("/auth", authRoute);
+app.use("/api/auth", authRoute);
 
 //app will go to the routes
-app.use("/recipe", recipeRoute);
-app.use("/api", cloud);
+app.use("/api/recipe", recipeRoute);
+app.use("/api/cloud", cloud);
 
 app.get("*", (req, res, next) => {
   res.sendFile(join(__dirname, "./client/build/index.html"));

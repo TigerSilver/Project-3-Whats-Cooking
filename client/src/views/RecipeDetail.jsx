@@ -4,6 +4,7 @@ import * as RecipeService from "./../services/recipe-service";
 
 import { Link } from "react-router-dom";
 
+import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
 export default class DetailView extends Component {
@@ -37,11 +38,27 @@ export default class DetailView extends Component {
         <Link to="/home"> Home </Link>
         <h1>Recipe Details</h1>
         {this.state.recipe && (
-          <Card key={this.state.recipe._id} style={{ width: "18rem" }}>
-            <Card.Title> {this.state.recipe.name} </Card.Title>
-            <Card.Text>{this.state.recipe.ingredients}</Card.Text>
-            <Card.Text>{this.state.recipe.preparation}</Card.Text>
-          </Card>
+          <Container>
+            <Card.Title>
+              <strong>Name:</strong> {this.state.recipe.name}
+            </Card.Title>
+            <Card.Text>
+              <strong>Ingredients:</strong> {this.state.recipe.ingredients}
+            </Card.Text>
+            <Card.Text>
+              <strong>Preparation:</strong> {this.state.recipe.preparation}
+            </Card.Text>
+            <Card.Text>
+              <strong>Meal:</strong> {this.state.recipe.meal}
+            </Card.Text>
+            <Card.Text>
+              <strong>Specifications:</strong>{" "}
+              {this.state.recipe.specifications}
+            </Card.Text>
+            <Card.Text>
+              <strong>Type of food:</strong> {this.state.recipe.typeOfFood}
+            </Card.Text>
+          </Container>
         )}
       </div>
     );
