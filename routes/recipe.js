@@ -56,6 +56,7 @@ router.post(
       })
       .catch(err => {
         console.log("An error happened:", err);
+        next(err); // this data is the one that we will send to the front como data.
       });
   }
 );

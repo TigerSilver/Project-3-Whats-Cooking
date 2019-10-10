@@ -28,9 +28,11 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   profilePicture: {
-    type: String
+    type: String,
+    default: "https://www.uic.mx/posgrados/files/2018/05/default-user.png"
     // required: true
   },
+
   favorites: [
     {
       //in this way we are telling that will bring the id of recipes for the private page

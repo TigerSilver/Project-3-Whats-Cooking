@@ -21,6 +21,7 @@ export default class SignUpView extends Component {
     //the methos needs to be bind for being able to work with this
     this.onValueChange = this.onValueChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    // this.onInputFileChange = this.onInputFileChange.bind(this);
   }
 
   onValueChange(event) {
@@ -31,6 +32,15 @@ export default class SignUpView extends Component {
       [name]: value
     });
   }
+
+  // onInputFileChange(event) {
+  //   const name = event.target.name;
+  //   const file = event.target.files[0];
+  //   console.log(file);
+  //   this.setState({
+  //     [name]: file
+  //   });
+  // }
 
   onFormSubmit(event) {
     event.preventDefault();
@@ -117,6 +127,14 @@ export default class SignUpView extends Component {
                 digits long)
               </Form.Text>
             </Form.Group>
+            {/* <Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="image"
+                onChange={this.onInputFileChange}
+              />
+            </Form.Group> */}
             <Button className="btn-light" type="submit">
               Register
             </Button>
