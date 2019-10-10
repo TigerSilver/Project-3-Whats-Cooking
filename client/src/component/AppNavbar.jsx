@@ -30,7 +30,8 @@ class AppNavbar extends Component {
   get shouldDisplayNavbar() {
     // const path = this.props.match.path;
     const path = this.props.location.pathname;
-    const shouldDisplay = path !== "/";
+    const excludedViews = ["/", "/signup", "/login"];
+    const shouldDisplay = !excludedViews.includes(path);
     return shouldDisplay;
   }
 
