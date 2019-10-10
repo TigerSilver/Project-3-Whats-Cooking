@@ -79,10 +79,7 @@ export default class HomeView extends Component {
               </Navbar.Text>
             </Navbar.Collapse>
           </Navbar>
-          <div>
-            <h1>Home</h1>
-            <p>Here are presented all the published recipes.</p>
-
+          <div className="body-background-app">
             {this.state.recipes.map(recipes => (
               <Card key={recipes._id} style={{ width: "18rem" }}>
                 <Card.Body>
