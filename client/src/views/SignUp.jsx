@@ -94,6 +94,10 @@ export default class SignUpView extends Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
+            <Form.Text>
+              (For security reasons, your password needs to be at least 8 digits
+              long)
+            </Form.Text>
             <Form.Control
               placeholder="Password"
               name="password"

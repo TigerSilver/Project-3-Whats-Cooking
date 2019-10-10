@@ -29,7 +29,8 @@ router.post("/signup", routeGuardMiddleware(false), (req, res, next) => {
   }
   if (password.length < 8) {
     res.status(400).json({
-      message: "Please make your password at least 8 digits long for security"
+      message:
+        "For security reasons, your password needs to be at least 8 digits long"
     });
     return;
   }
