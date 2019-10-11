@@ -8,7 +8,8 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import "./../App.css";
+
+import RecipeItem from "./../component/RecipeItem";
 
 export default class HomeView extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class HomeView extends Component {
       .catch(error => {
         console.log(error);
       });
+    console.log("RECIPES AFTER MOUNTING", this.state.recipes);
   }
 
   render() {
@@ -43,44 +45,9 @@ export default class HomeView extends Component {
         )) || (
           <div>
             <Row>
-              {this.state.recipes.map(recipes => (
-                <Col key={recipes._id} sm={6} className="mb-3">
-                  <Card>
-                    <Card.Body>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between"
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center"
-                          }}
-                        >
-                          <Card.Title className="appGreen-text">
-                            {recipes.name}
-                          </Card.Title>
-                          <p>Author: {recipes._addedBy.username}</p>
-                          <Link
-                            to={`/recipeDetail/${recipes._id}`}
-                            variant="primary"
-                            className="text-success"
-                          >
-                            See more
-                          </Link>
-                        </div>
-                        <Image
-                          src={recipes.image}
-                          width="120"
-                          height="111"
-                          rounded
-                        />
-                      </div>
-                    </Card.Body>
-                  </Card>
+              {this.state.recipes.map(recipe => (
+                <Col key={recipe._id} sm={6} className="mb-3">
+                  <RecipeItem recipe={recipe} />
                 </Col>
               ))}
             </Row>

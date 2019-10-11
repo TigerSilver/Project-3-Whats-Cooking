@@ -26,8 +26,7 @@ export const listRecipes = () =>
       .get("/recipes")
       .then(response => {
         console.log("FEEEEEEDBACK", response.data);
-        const recipes = response.data.recipes;
-        resolve(recipes);
+        resolve(response.data.recipes);
       })
       .catch(error => {
         console.log("SERVICE ERROR", error);

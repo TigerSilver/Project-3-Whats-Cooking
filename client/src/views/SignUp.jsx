@@ -53,6 +53,7 @@ export default class SignUpView extends Component {
       username
     })
       .then(user => {
+        this.props.setUser(user);
         this.props.history.push("/home");
         console.log(user);
       })

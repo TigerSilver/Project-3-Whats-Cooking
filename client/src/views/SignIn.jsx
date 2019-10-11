@@ -35,6 +35,7 @@ export default class SignInView extends Component {
       password
     })
       .then(user => {
+        this.props.setUser(user);
         this.props.history.push("/home");
       })
       .catch(error => {

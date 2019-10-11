@@ -88,7 +88,7 @@ router.post(
               return;
             }
             //the next step will send the user information to the front end
-            res.status(200).json(aNewUser);
+            res.status(200).json({ user: aNewUser });
           });
         });
       }
@@ -115,7 +115,7 @@ router.post("/login", routeGuardMiddleware(false), (req, res, next) => {
           .json({ message: "It went wrong maintain the session." });
         return;
       }
-      res.status(200).json(logged);
+      res.status(200).json({ user: logged });
     });
   })(req, res, next); // ask ze what is happening here
 });

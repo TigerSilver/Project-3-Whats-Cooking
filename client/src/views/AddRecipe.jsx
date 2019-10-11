@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -182,7 +182,6 @@ export default class addRecipeView extends Component {
                   placeholder="Ingredients"
                   value={this.state.ingredients}
                   onChange={this.onValueChange}
-                  as="textarea"
                   rows="2"
                 />
               </Form.Group>
@@ -194,7 +193,6 @@ export default class addRecipeView extends Component {
                   placeholder="Preparation"
                   value={this.state.preparation}
                   onChange={this.onValueChange}
-                  as="textarea"
                   rows="7"
                 />
               </Form.Group>

@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 
 import * as RecipeService from "./../services/recipe-service";
 
-import { Link } from "react-router-dom";
-
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -38,6 +36,31 @@ export default class DetailView extends Component {
       <div>
         {this.state.recipe && (
           <Fragment>
+            <div
+              style={{ backgroundImage: `url(${this.state.recipe.image})` }}
+              className="recipe-detail-header"
+            >
+              {/* <Image
+                src={this.state.recipe.image}
+                thumbnail
+                width="550"
+                height="400"
+              /> */}
+              <Container>
+                {/* <h1 className="appGreen-text">{this.state.recipe.name}</h1> */}
+                <h1>{this.state.recipe.name}</h1>
+                <div>
+                  {[
+                    // this.state.recipe.ingredients,
+                    this.state.recipe.meal,
+                    this.state.recipe.specifications,
+                    this.state.recipe.typeOfFood
+                  ].map(item => (
+                    <span>{item}</span>
+                  ))}
+                </div>
+              </Container>
+            </div>
             <Container>
               <div
                 style={{
@@ -47,13 +70,13 @@ export default class DetailView extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image
+                {/* <Image
                   src={this.state.recipe.image}
                   thumbnail
                   width="550"
                   height="400"
-                />
-                <h1 className="appGreen-text">{this.state.recipe.name}</h1>
+                /> */}
+                {/* <h1 className="appGreen-text">{this.state.recipe.name}</h1> */}
               </div>
               <br />
               <Card.Text>

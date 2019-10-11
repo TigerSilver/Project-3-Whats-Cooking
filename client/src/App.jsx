@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -25,6 +26,7 @@ export default class App extends Component {
     this.state = {
       user: null
     };
+    this.setUser = this.setUser.bind(this);
   }
 
   componentDidMount() {
@@ -39,15 +41,27 @@ export default class App extends Component {
       });
   }
 
+  setUser(user) {
+    this.setState({
+      user
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
-          <AppNavbar user={this.state.user} />
+          <AppNavbar user={this.state.user} setUser={this.setUser} />
           <Switch>
             <Route path="/" exact component={LandingView} />
-            <Route path="/login" component={SignInView} />
-            <Route path="/signup" component={SignUpView} />
+            <Route
+              path="/login"
+              render={props => <SignInView setUser={this.setUser} {...props} />}
+            />
+            <Route
+              path="/signup"
+              render={props => <SignUpView setUser={this.setUser} {...props} />}
+            />
             {/* <Route path="/home" component={HomeView} /> */}
             <Route
               path="/home"
