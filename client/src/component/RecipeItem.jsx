@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
 export default props => (

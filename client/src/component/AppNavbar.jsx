@@ -61,7 +61,7 @@ class AppNavbar extends Component {
                 </Navbar.Text>
               )}
             </Navbar.Collapse>
-            <Navbar.Collapse className="justify-content-center">
+            <Navbar.Collapse className="justify-content-center ml-5 pl-3">
               <Link to="/home">
                 <Image src="./../../Logo.png" height="120" width="111" fluid />
               </Link>

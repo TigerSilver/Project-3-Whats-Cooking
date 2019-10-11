@@ -2,12 +2,9 @@ import React, { Component } from "react";
 
 import { listRecipes } from "./../services/recipe-service";
 
-import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 
 import RecipeItem from "./../component/RecipeItem";
 
