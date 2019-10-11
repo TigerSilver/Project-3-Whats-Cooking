@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
-import "./../App.css";
 
 import * as AuthenticationServices from "./../services/auth-service";
 
@@ -18,9 +17,9 @@ class AppNavbar extends Component {
 
   handleClick() {
     AuthenticationServices.logOutService()
-      .then(user => {
+      .then(() => {
+        this.props.setUser(null);
         this.props.history.push("/");
-        // console.log(user);
       })
       .catch(error => {
         console.log("ERROR", error);
@@ -44,7 +43,7 @@ class AppNavbar extends Component {
           style={{
             backgroundColor: "#2E8B57"
           }}
-          className="mb-3"
+          className="mb-3 recipe-app-navbar"
         >
           <Container>
             <Navbar.Collapse className="justify-content-start">

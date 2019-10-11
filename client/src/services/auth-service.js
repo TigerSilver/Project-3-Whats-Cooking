@@ -41,7 +41,7 @@ export const signUpService = ({
     authAPI
       .post("/signup", { email, password, firstName, lastName, username })
       .then(response => {
-        const user = response.data;
+        const user = response.data.user;
         resolve(user);
       })
       .catch(error => {

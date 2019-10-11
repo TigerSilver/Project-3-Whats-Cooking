@@ -11,8 +11,11 @@ const routeGuardMiddleware = require("./../middleware/route-guard");
 // POPULATE ROUTE
 router.get("/recipes", routeGuardMiddleware(true), (req, res, next) => {
   Recipe.find({})
+    .sort({ createdAt: -1 })
     .populate("_addedBy")
     .then(recipes => {
+      console.log("feedback fter populate", recipes);
+
       res.json({ recipes }); // this data is the one that we will send to the front como data.
     })
     .catch(err => {
