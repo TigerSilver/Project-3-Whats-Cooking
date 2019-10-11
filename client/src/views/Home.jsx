@@ -41,6 +41,17 @@ export default class HomeView extends Component {
           </div>
         )) || (
           <div>
+            <h3
+              className="title-green"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              Latest Recipes
+            </h3>
+            <br />
             <Row>
               {this.state.recipes.map(recipe => (
                 <Col key={recipe._id} sm={6} className="mb-3">
