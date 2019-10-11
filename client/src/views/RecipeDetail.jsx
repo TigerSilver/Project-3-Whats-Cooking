@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 
 import * as RecipeService from "./../services/recipe-service";
 
-import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
