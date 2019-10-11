@@ -58,7 +58,7 @@ export default class ListRecipe extends Component {
                 <Link to={`/recipedetail/${recipe._id}`}> {recipe.name} </Link>
                 <Link to={`/edit/${recipe._id}`}>
                   <Badge variant="success">Edit</Badge>
-                </Link>
+                </Link>{" "}
                 <Badge
                   variant="danger"
                   onClick={() => this.deleteRecipe(recipe._id)}
@@ -67,19 +67,15 @@ export default class ListRecipe extends Component {
                 </Badge>
               </ListGroup.Item>
             </ListGroup>
-            <Card key={recipe._addedBy} style={{ width: "18rem" }}>
-              {" "}
-              {/* <Button onClick={this.showForm} variant="primary">
-                Edit
-              </Button>
-              {this.state.toggle && <UpdateRecipe recipeInfo={recipe} />} */}
-              <Button
+            {/* <Card key={recipe._addedBy} style={{ width: "18rem" }}> */}
+            {/* {" "} */}
+            {/* <Button
                 variant="danger"
                 onClick={() => this.deleteRecipe(recipe._id)}
               >
                 Delete
-              </Button>
-            </Card>
+              </Button> */}
+            {/* </Card> */}
           </div>
         ))}
       </div>
