@@ -50,7 +50,7 @@ class AppNavbar extends Component {
               {user && (
                 <Navbar.Text className="text-white">
                   <Image
-                    src={user.image}
+                    src="DefaultProfile.jpg"
                     height="40"
                     width="40"
                     roundedCircle

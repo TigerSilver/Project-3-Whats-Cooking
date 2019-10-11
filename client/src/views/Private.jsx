@@ -63,9 +63,19 @@ export default class PrivateView extends Component {
           <div>
             {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             {/* TODO map through the array of recipes (if it exists) */}
-            <h1>Hello, {this.state.user.firstName}</h1>
+            <h1 className="title-green">Hello, {this.state.user.firstName}</h1>
             <br />
-            <p>Below you can find your recipes:</p>
+            <h4
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                color: "#2e8b57"
+              }}
+            >
+              Below you can find your recipes:
+            </h4>
             <Row>
               {this.state.recipes.map(recipe => (
                 <Col key={recipe._id} sm={6} className="mb-3">
